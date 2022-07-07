@@ -1,0 +1,14 @@
+# Terraform files
+.terraform
+terraform.tfstate
+terraform.tfvars
+*.tfstate*
+
+.terragrunt-cache
+*.plan
+
+.vscode
+
+# OS X files
+.history
+.DS_Store
