@@ -1,6 +1,6 @@
 
 module "cmk" {
-  source             = "../../modules/kms-cmk"
+  source             = "github.com/sandromanke/tf-module-gcp-kms-cmk"
   name               = local.name_regional
   location           = local.region
   labels             = local.labels

@@ -6,7 +6,7 @@ module "service_account" {
 }
 
 module "cloudrun" {
-  source                   = "../../modules/cloudrun"
+  source                   = "github.com/sandromanke/tf-module-gcp-cloudrun"
   service_account_email    = module.service_account.email
   name                     = local.name_regional
   region                   = local.region
