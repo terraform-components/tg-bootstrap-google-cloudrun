@@ -2,6 +2,11 @@ include "root" {
   path = find_in_parent_folders("root.hcl")
 }
 
+dependency "baseline" {
+  config_path  = "../baseline"
+  skip_outputs = true
+}
+
 terraform {
   source = "${get_path_to_repo_root()}//stacks/vpc"
 }

@@ -6,6 +6,11 @@ terraform {
   source = "${get_path_to_repo_root()}//stacks/database"
 }
 
+dependency "baseline" {
+  config_path  = "../baseline"
+  skip_outputs = true
+}
+
 dependency "vpc" {
   config_path = "../vpc"
 }

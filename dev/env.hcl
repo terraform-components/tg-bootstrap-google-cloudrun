@@ -1,3 +1,3 @@
 locals {
-  project = "sm-dev-cloudrun-simple"
+  project = "tc-test123-355708"
 }

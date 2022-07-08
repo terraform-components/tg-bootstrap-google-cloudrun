@@ -1,14 +1,41 @@
-# Terraform files
-.terraform
-terraform.tfstate
-terraform.tfvars
-*.tfstate*
+# Local .terraform directories
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+# tf lock file shouldnt be in modules
+.terraform.lock.hcl
 
 .terragrunt-cache
 *.plan
 
-.vscode
+crash.log
+
+.envrc
+
+.infracost
 
 # OS X files
 .history
 .DS_Store
+._*
+
+# Emacs save files
+*~
+\#*\#
+.\#*
+
+# Vim-related files
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+
+# IntelliJ IDEA files:
+.idea/
+
+# Visual Studio Code files:
+.vscode/
