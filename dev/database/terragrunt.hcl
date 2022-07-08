@@ -7,8 +7,7 @@ terraform {
 }
 
 dependency "baseline" {
-  config_path  = "../baseline"
-  skip_outputs = true
+  config_path = "../baseline"
 }
 
 dependency "vpc" {
@@ -17,6 +16,7 @@ dependency "vpc" {
 
 # These inputs get merged with the common inputs from the root
 inputs = {
-  name    = "db123"
-  network = dependency.vpc.outputs.network
+  kms_key_ring_id = dependency.baseline.outputs.kms_key_ring_id
+  name            = "db1234"
+  network         = dependency.vpc.outputs.network
 }

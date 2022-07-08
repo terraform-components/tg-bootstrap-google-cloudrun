@@ -38,17 +38,11 @@ locals {
 
   region        = "${local.region}"
   project       = "${local.project}"
-  name_global   = format(local.name_format["global"], var.name)
-  name_regional = format(local.name_format[local.region], var.name)
   labels = {}
 }
 
 module "resource_naming" {
   source      = "github.com/terraform-components/terraform-google-naming"
-}
-
-variable "name" {
-  type = string
 }
 
 EOF

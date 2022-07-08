@@ -1,5 +1,3 @@
-data "google_project" "current" {}
-
 resource "google_artifact_registry_repository" "docker" {
   provider      = google-beta
   location      = var.location

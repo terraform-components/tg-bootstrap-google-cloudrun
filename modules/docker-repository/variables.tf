@@ -13,3 +13,7 @@ variable "kms_key_id" {
 variable "labels" {
   type = map(string)
 }
+
+variable "project" {
+  type = string
+}

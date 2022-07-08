@@ -1,6 +1,6 @@
 
 resource "google_compute_network" "vpc" {
-  name                    = local.name_global
+  name                    = format(local.name_format["global"], var.name)
   auto_create_subnetworks = false
 }
 

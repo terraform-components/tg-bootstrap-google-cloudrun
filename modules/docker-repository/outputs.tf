@@ -3,5 +3,5 @@ output "id" {
 }
 
 output "repository" {
-  value = "${var.location}-docker.pkg.dev/${data.google_project.current.project_id}/docker-${var.name}"
+  value = "${var.location}-docker.pkg.dev/${var.project}/docker-${var.name}"
 }

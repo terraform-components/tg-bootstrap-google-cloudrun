@@ -3,8 +3,7 @@ include "root" {
 }
 
 dependency "baseline" {
-  config_path  = "../baseline"
-  skip_outputs = true
+  config_path = "../baseline"
 }
 
 terraform {

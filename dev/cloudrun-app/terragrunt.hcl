@@ -7,9 +7,9 @@ terraform {
 }
 
 dependency "baseline" {
-  config_path  = "../baseline"
-  skip_outputs = true
+  config_path = "../baseline"
 }
+
 
 dependency "database" {
   config_path = "../database"
