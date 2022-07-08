@@ -5,3 +5,7 @@ variable "vpc_access_connector" {
 variable "cloudsql_connection_name" {
   type = string
 }
+
+variable "domains" {
+  type = map(list(string))
+}
