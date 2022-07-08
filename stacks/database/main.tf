@@ -1,6 +1,6 @@
 
 module "cmk" {
-  source             = "github.com/terraform-components/tf-module-google-kms-cmk"
+  source             = "github.com/terraform-components/terraform-google-kms-cmk"
   name               = local.name_regional
   location           = local.region
   labels             = local.labels

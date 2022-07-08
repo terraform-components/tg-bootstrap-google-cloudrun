@@ -23,7 +23,7 @@ resource "google_project_default_service_accounts" "default_service_accounts" {
 }
 
 module "cmk" {
-  source             = "github.com/terraform-components/tf-module-google-kms-cmk"
+  source             = "github.com/terraform-components/terraform-google-kms-cmk"
   name               = local.name_regional
   location           = local.region
   labels             = local.labels
