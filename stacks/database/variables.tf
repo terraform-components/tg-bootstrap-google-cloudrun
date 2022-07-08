@@ -7,6 +7,6 @@ variable "network" {
   default = null
 }
 
-variable "kms_key_ring_id" {
+variable "kms_key_id" {
   type = string
 }

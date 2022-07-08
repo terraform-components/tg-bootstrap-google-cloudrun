@@ -24,4 +24,12 @@ inputs = {
     "cloudkms.googleapis.com",
     "artifactregistry.googleapis.com",
   ]
+
+  keys = [
+    "database",
+  ]
+
+  service_identities = {
+    database = ["sqladmin.googleapis.com"]
+  }
 }

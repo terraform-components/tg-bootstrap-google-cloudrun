@@ -12,5 +12,5 @@ dependency "baseline" {
 
 
 inputs = {
-  kms_key_ring_id = dependency.baseline.outputs.kms_key_ring_id
+  kms_key_id = dependency.baseline.outputs.kms_key_ids["registry"]
 }

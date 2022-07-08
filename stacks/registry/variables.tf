@@ -2,6 +2,6 @@ variable "name" {
   type = string
 }
 
-variable "kms_key_ring_id" {
+variable "kms_key_id" {
   type = string
 }

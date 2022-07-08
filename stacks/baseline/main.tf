@@ -20,3 +20,11 @@ resource "google_project_default_service_accounts" "default_service_accounts" {
   depends_on     = [module.project_services]
   project        = local.project
 }
+
+module "keys" {
+  source             = "github.com/terraform-components/terraform-google-kms-keys"
+  location           = local.region
+  labels             = local.labels
+  keys               = var.keys
+  service_identities = var.service_identities
+}

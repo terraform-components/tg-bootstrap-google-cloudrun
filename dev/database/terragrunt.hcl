@@ -16,7 +16,7 @@ dependency "vpc" {
 
 # These inputs get merged with the common inputs from the root
 inputs = {
-  kms_key_ring_id = dependency.baseline.outputs.kms_key_ring_id
-  name            = "db1234"
-  network         = dependency.vpc.outputs.network
+  kms_key_id = dependency.baseline.outputs.kms_key_ids["database"]
+  name       = "db12345"
+  network    = dependency.vpc.outputs.network
 }

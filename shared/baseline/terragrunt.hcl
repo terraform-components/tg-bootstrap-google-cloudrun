@@ -14,4 +14,12 @@ inputs = {
     "cloudkms.googleapis.com",
     "artifactregistry.googleapis.com",
   ]
+
+  keys = [
+    "registry"
+  ]
+
+  service_identities = {
+    registry = ["artifactregistry.googleapis.com"]
+  }
 }
