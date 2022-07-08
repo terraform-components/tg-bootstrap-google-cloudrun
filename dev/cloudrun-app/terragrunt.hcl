@@ -23,4 +23,5 @@ dependency "vpc" {
 inputs = {
   vpc_access_connector     = dependency.vpc.outputs.cloudrun_vpc_access_connector
   cloudsql_connection_name = dependency.database.outputs.connection_name
+  cloudsql_db              = dependency.database.outputs.db
 }

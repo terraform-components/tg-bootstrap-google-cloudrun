@@ -41,3 +41,21 @@ module "ingress" {
   domains                           = var.domains
   ssl_certificates                  = [for _, certificate in google_compute_managed_ssl_certificate.ingress : certificate.id]
 }
+
+resource "google_sql_user" "iam_user" {
+  name     = trimsuffix(module.service_account.email, ".gserviceaccount.com")
+  instance = var.cloudsql_db
+  type     = "CLOUD_IAM_SERVICE_ACCOUNT"
+}
+
+resource "google_project_iam_member" "iam_user_cloudsql_instance_user" {
+  role    = "roles/cloudsql.instanceUser"
+  project = local.project
+  member  = "serviceAccount:${module.service_account.email}"
+}
+
+resource "google_project_iam_member" "iam_user_cloudsql_client" {
+  role    = "roles/cloudsql.client"
+  project = local.project
+  member  = "serviceAccount:${module.service_account.email}"
+}
