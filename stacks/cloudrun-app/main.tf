@@ -12,6 +12,12 @@ module "cloudrun" {
   region                   = local.region
   vpc_access_connector     = var.vpc_access_connector
   cloudsql_connection_name = var.cloudsql_connection_name
+
+  environment_variables = {
+    "INSTANCE_CONNECTION_NAME" = var.cloudsql_connection_name
+    "DB_USER"                  = google_sql_user.iam_user.name
+    "DB_NAME"                  = "postgres"
+  }
 }
 
 resource "google_compute_global_address" "ingress" {

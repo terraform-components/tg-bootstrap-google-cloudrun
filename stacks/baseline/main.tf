@@ -16,6 +16,7 @@ module "project_services" {
     "iap.googleapis.com",
     "redis.googleapis.com",
     "cloudkms.googleapis.com",
+    "artifactregistry.googleapis.com",
   ]
   activate_api_identities     = []
   disable_services_on_destroy = true
