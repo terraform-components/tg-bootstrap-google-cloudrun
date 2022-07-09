@@ -3,9 +3,10 @@ resource "google_sql_database_instance" "db" {
   deletion_protection = var.deletion_protection
 
   provider            = google-beta
-  name                = var.name
+  name                = format(var.name_format.name1, var.name)
   database_version    = var.database_version
   encryption_key_name = var.kms_key_id
+  region              = var.region
 
   settings {
     tier              = var.tier

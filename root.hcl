@@ -34,15 +34,25 @@ generate "locals" {
   if_exists = "overwrite_terragrunt"
   contents  = <<EOF
 locals {
-  name_format   = module.resource_naming.format
-
+  name_format   = module.context.format
+  context       = module.context.context
   region        = "${local.region}"
   project       = "${local.project}"
-  labels = {}
+  labels        = {} # TBD
 }
 
-module "resource_naming" {
-  source      = "github.com/terraform-components/terraform-google-naming"
+module "context" {
+  source                  = "github.com/terraform-components/terraform-null-context"
+  location_abbreviations  = module.locations.abbreviations
+  # we don't want those prefixes here, but they can be very useful
+  context                 = {
+    namespace   = null
+    environment = null
+  }
+}
+
+module "locations" {
+  source = "github.com/terraform-components/terraform-google-locations"
 }
 
 EOF

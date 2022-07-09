@@ -1,12 +1,15 @@
+locals {
+  name = format(local.name_format["global"].name1, var.name)
+}
+
 # this is not ideal as this should be in a shared project
 module "registry" {
   source     = "../../modules/docker-repository"
-  name       = format(local.name_format[local.region], var.name)
+  name       = local.name
   location   = local.region
   labels     = local.labels
   project    = local.project
   kms_key_id = var.kms_key_id
-  depends_on = [module.cmk]
 }
 
 # make it public

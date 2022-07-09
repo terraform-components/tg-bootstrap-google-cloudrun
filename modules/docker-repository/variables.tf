@@ -1,5 +1,6 @@
 variable "name" {
-  type = string
+  type        = string
+  description = "Names of docker artifact registries are local to the region they are in, so you can name them all the same if you choose to."
 }
 
 variable "location" {

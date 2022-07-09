@@ -1,7 +1,7 @@
 CLOUD_RUN_APP_NAME := cloudrun-simple-euw3
 APP_REGION := europe-west3
 APP_PROJECT := tc-test123-355708
-IMAGE := europe-west3-docker.pkg.dev/tc-shared-355710/docker-cloudrun-simple-euw3/cloudrun-pgtest:$(shell git rev-parse --verify HEAD)
+IMAGE := europe-west3-docker.pkg.dev/tc-shared-355710/docker-cloudrun-simple/cloudrun-pgtest:$(shell git rev-parse --verify HEAD)
 
 all: ci cloudrun
 

@@ -1,6 +1,5 @@
-resource "google_kms_key_ring" "this" {
-  name     = var.name
-  location = local.region
+locals {
+  name = format(local.name_format[local.region].name1, var.name)
 }
 
 module "project_services" {
@@ -23,6 +22,8 @@ resource "google_project_default_service_accounts" "default_service_accounts" {
 
 module "keys" {
   source             = "github.com/terraform-components/terraform-google-kms-keys"
+  name_format        = local.name_format["global"]
+  name               = "main"
   location           = local.region
   labels             = local.labels
   keys               = var.keys

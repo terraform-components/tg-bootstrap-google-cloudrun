@@ -1,3 +1,17 @@
+variable "name_format" {
+  type = object({
+    name1 = string
+  })
+  default = {
+    name1 = "%s"
+  }
+}
+
+variable "region" {
+  type        = string
+  description = "Name is unique within the project across all regions and can not be used again for 2 weeks after deleting. This means be careful with deleting and use regional names when formatting."
+}
+
 variable "name" {
   type = string
 }

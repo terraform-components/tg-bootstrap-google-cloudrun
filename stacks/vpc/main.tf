@@ -1,6 +1,6 @@
 
 resource "google_compute_network" "vpc" {
-  name                    = format(local.name_format["global"], var.name)
+  name                    = format(local.name_format["global"].name1, var.name)
   auto_create_subnetworks = false
 }
 
@@ -13,14 +13,14 @@ module "service_networking" {
 
 resource "google_compute_subnetwork" "cloudrun" {
   network                  = google_compute_network.vpc.id
-  name                     = format(local.name_format[local.region], "cloudrun")
+  name                     = format(local.name_format[local.region].name1, "cloudrun")
   ip_cidr_range            = var.cidr_cloudrun
   private_ip_google_access = true
 }
 
 resource "google_vpc_access_connector" "cloudrun" {
   provider = google-beta
-  name     = format(local.name_format[local.region], "cloudrun")
+  name     = google_compute_subnetwork.cloudrun.name
   region   = local.region
 
   subnet {
@@ -35,7 +35,7 @@ resource "google_vpc_access_connector" "cloudrun" {
 resource "google_compute_firewall" "serverless_health_checks" {
   name          = "serverless-health-checks"
   network       = google_compute_network.vpc.id
-  description   = "Allow access for serverless to vpc connector health checks ${var.name}"
+  description   = "Allow access for serverless to vpc connector health checks ${google_compute_network.vpc.name}"
   direction     = "INGRESS"
   source_ranges = ["130.211.0.0/22", "35.191.0.0/16", "108.170.220.0/23"]
   target_tags   = ["vpc-connector-${local.region}-${google_vpc_access_connector.cloudrun.name}"]
@@ -49,7 +49,7 @@ resource "google_compute_firewall" "serverless_health_checks" {
 resource "google_compute_firewall" "vpc_connector_to_serverless" {
   name               = "vpc-connector-to-serverless"
   network            = google_compute_network.vpc.id
-  description        = "Allow access vpc connector to serverless ${var.name}"
+  description        = "Allow access vpc connector to serverless ${google_compute_network.vpc.name}"
   direction          = "EGRESS"
   destination_ranges = ["107.178.230.64/26", "35.199.224.0/19"]
   target_tags        = ["vpc-connector-${local.region}-${google_vpc_access_connector.cloudrun.name}"]

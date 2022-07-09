@@ -8,7 +8,8 @@ module "service_account" {
 module "cloudrun" {
   source                   = "github.com/terraform-components/terraform-google-cloudrun"
   service_account_email    = module.service_account.email
-  name                     = format(local.name_format[local.region], var.name)
+  name_format              = local.name_format["global"]
+  name                     = var.name
   region                   = local.region
   vpc_access_connector     = var.vpc_access_connector
   cloudsql_connection_name = var.cloudsql_connection_name
@@ -21,7 +22,7 @@ module "cloudrun" {
 }
 
 resource "google_compute_global_address" "ingress" {
-  name = format(local.name_format["global"], var.name)
+  name = format(local.name_format["global"].name1, var.name)
 }
 
 resource "google_compute_managed_ssl_certificate" "ingress" {
@@ -41,11 +42,15 @@ resource "google_compute_managed_ssl_certificate" "ingress" {
 
 module "ingress" {
   source                            = "../../modules/loadbalancer-global-l7"
-  name                              = format(local.name_format["global"], var.name)
+  name_format                       = local.name_format["global"]
+  name                              = var.name
   ip_address                        = google_compute_global_address.ingress.address
   backend_network_endpoint_group_id = module.cloudrun.network_endpoint_group_id
   domains                           = var.domains
   ssl_certificates                  = [for _, certificate in google_compute_managed_ssl_certificate.ingress : certificate.id]
+  depends_on = [
+    module.cloudrun
+  ]
 }
 
 resource "google_sql_user" "iam_user" {

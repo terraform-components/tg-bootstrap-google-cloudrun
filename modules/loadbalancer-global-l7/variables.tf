@@ -1,3 +1,12 @@
+variable "name_format" {
+  type = object({
+    name1 = string
+  })
+  default = {
+    name1 = "%s"
+  }
+}
+
 variable "name" {
   type = string
 }
